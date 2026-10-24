@@ -470,8 +470,9 @@
       instagram: "https://www.instagram.com/dr_rama_safklo/",
       website: window.location.href || "https://www.instagram.com/dr_rama_safklo/",
       address1: "3 شارع أحمد الصيفي متفرع من مصطفى النحاس، مدينة نصر، القاهرة",
-      address2: "عيادة 108 الدور الأول، ميديكال بارك إيليت، الرحاب، القاهرة",
-      notes: "د. راما سفقلو - أخصائية السمنة والنحافة وتنسيق القوام (Cairo University 🏨) - فروع: مدينة نصر والرحاب."
+      mapNasrCity: "https://maps.google.com/?q=30.053493,31.342398",
+      address2: "عيادة 108 الدور الأول، مول ميديكال بارك إيليت (بين بوابة 5 و6)، مدينة الرحاب، القاهرة",
+      mapRehab: "https://maps.google.com/?cid=10765199959451154721"
     };
 
     // Initialize Dynamic QR Code
@@ -542,18 +543,36 @@
 
     // Smart vCard (.vcf) Generator for iOS & Android
     function downloadVCard() {
+      // Clean notes with formatted direct links so mobile contacts can easily click both branch locations
+      const noteContent = [
+        "عيادة د. راما سفقلو للتغذية العلاجية ونحت وتنسيق القوام (Cairo University)",
+        "",
+        "📍 موقع فرع مدينة نصر (Life Style):",
+        "3 شارع أحمد الصيفي متفرع من مصطفى النحاس - أعلى مطعم العودة",
+        doctorData.mapNasrCity,
+        "",
+        "📍 موقع فرع الرحاب (Medical Park Elite):",
+        "عيادة 108 الدور الأول - مول ميديكال بارك إيليت (بين بوابة 5 و 6)",
+        doctorData.mapRehab,
+        "",
+        "📸 إنستغرام: @dr_rama_safklo"
+      ].join("\\n");
+
       const vCardContent = [
         "BEGIN:VCARD",
         "VERSION:3.0",
-        `FN:${doctorData.nameAr} (${doctorData.name})`,
-        `N:Safklo;Rama;;Dr.;`,
-        `ORG:${doctorData.clinic}`,
-        `TITLE:${doctorData.title}`,
+        `FN;CHARSET=UTF-8:${doctorData.nameAr} (${doctorData.name})`,
+        `N;CHARSET=UTF-8:Safklo;Rama;;Dr.;`,
+        `ORG;CHARSET=UTF-8:${doctorData.clinic}`,
+        `TITLE;CHARSET=UTF-8:${doctorData.title}`,
         `TEL;TYPE=CELL,VOICE,PREF:${doctorData.phone}`,
         `EMAIL;TYPE=WORK,INTERNET:${doctorData.email}`,
-        `URL:${doctorData.instagram}`,
-        `ADR;TYPE=WORK,POSTAL:;;${doctorData.address1};القاهرة;;مصر;`,
-        `NOTE;CHARSET=UTF-8:${doctorData.notes}`,
+        `URL;TYPE=WORK;CHARSET=UTF-8:${doctorData.instagram}`,
+        `URL;TYPE=Nasr City Branch:${doctorData.mapNasrCity}`,
+        `URL;TYPE=Rehab Branch:${doctorData.mapRehab}`,
+        `ADR;TYPE=WORK;CHARSET=UTF-8:;;${doctorData.address1};مدينة نصر;القاهرة;;مصر`,
+        `ADR;TYPE=HOME;CHARSET=UTF-8:;;${doctorData.address2};الرحاب;القاهرة;;مصر`,
+        `NOTE;CHARSET=UTF-8:${noteContent}`,
         "END:VCARD"
       ].join("\r\n");
 
