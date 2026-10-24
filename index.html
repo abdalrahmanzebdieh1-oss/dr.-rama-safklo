@@ -181,10 +181,11 @@
       <div class="relative w-36 h-36 mb-4 flex items-center justify-center pulsing-border">
         <div class="relative z-10 w-[136px] h-[136px] rounded-full overflow-hidden bg-white p-1 border-2 border-[#E5C378]/80 shadow-2xl flex items-center justify-center group cursor-pointer" onclick="document.getElementById('logoFileInput').click()" title="انقر لتغيير الصورة إن أردت">
           
-          <!-- Clinic Official Logo Image with SVG Vector Fallback -->
+          <!-- Clinic Official Logo Image: Named logo.jpg for easy GitHub deployment -->
           <img id="doctorLogoImg" 
-               src="photo_5974414631499404125_y1.jpg" 
+               src="logo.jpg" 
                alt="Dr. Rama Safklo Clinic Logo" 
+               crossorigin="anonymous"
                class="w-full h-full object-contain rounded-full transition-transform duration-300 group-hover:scale-105"
                onerror="this.style.display='none'; document.getElementById('vectorFallbackLogo').style.display='block';" />
           
@@ -548,21 +549,45 @@
         const img = document.getElementById('doctorLogoImg');
         const fallbackSvg = document.getElementById('vectorFallbackLogo');
 
-        // If the main image is visible and loaded
+        // Optimal size for modern Android & iOS full screen caller ID
+        const targetSize = 1024;
+
         if (img && img.style.display !== 'none' && img.naturalWidth > 0) {
           try {
             const canvas = document.createElement('canvas');
-            const size = 320; // optimal size for mobile address books
-            canvas.width = size;
-            canvas.height = size;
+            canvas.width = targetSize;
+            canvas.height = targetSize;
             const ctx = canvas.getContext('2d');
             
-            // Draw a white circular/square background
-            ctx.fillStyle = '#FFFFFF';
-            ctx.fillRect(0, 0, size, size);
-            ctx.drawImage(img, 0, 0, size, size);
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
 
-            const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+            // Clean luxury white background for full caller screen
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, targetSize, targetSize);
+
+            // Safe margins so circular caller cuts do not crop text or borders
+            const padding = targetSize * 0.08;
+            const drawWidth = targetSize - (padding * 2);
+            const drawHeight = targetSize - (padding * 2);
+
+            const imgRatio = img.naturalWidth / img.naturalHeight;
+            let destW = drawWidth;
+            let destH = drawHeight;
+            let destX = padding;
+            let destY = padding;
+
+            if (imgRatio > 1) {
+              destH = drawWidth / imgRatio;
+              destY = padding + (drawHeight - destH) / 2;
+            } else {
+              destW = drawHeight * imgRatio;
+              destX = padding + (drawWidth - destW) / 2;
+            }
+
+            ctx.drawImage(img, destX, destY, destW, destH);
+
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
             const base64 = dataUrl.split(',')[1];
             resolve(base64);
             return;
@@ -571,7 +596,7 @@
           }
         }
 
-        // Fallback: rasterize the inline SVG logo to canvas
+        // Fallback: rasterize the inline SVG logo to canvas with high resolution
         try {
           const svgData = new XMLSerializer().serializeToString(fallbackSvg || document.querySelector('svg'));
           const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
@@ -581,14 +606,21 @@
           
           tempImg.onload = function() {
             const canvas = document.createElement('canvas');
-            canvas.width = 300;
-            canvas.height = 300;
+            canvas.width = targetSize;
+            canvas.height = targetSize;
             const ctx = canvas.getContext('2d');
+            
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
             ctx.fillStyle = '#FFFFFF';
-            ctx.fillRect(0, 0, 300, 300);
-            ctx.drawImage(tempImg, 0, 0, 300, 300);
+            ctx.fillRect(0, 0, targetSize, targetSize);
+            
+            const pad = targetSize * 0.12;
+            ctx.drawImage(tempImg, pad, pad, targetSize - (pad * 2), targetSize - (pad * 2));
+            
             URLObj.revokeObjectURL(blobURL);
-            const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
             resolve(dataUrl.split(',')[1]);
           };
 
