@@ -287,8 +287,8 @@
       <button onclick="downloadVCard()" class="shimmer-btn w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#B8285C] via-[#D4AF37] to-[#B8285C] text-slate-950 font-bold text-sm tracking-wide shadow-xl shadow-brand-magenta/30 border border-amber-200/50 flex items-center justify-center gap-3 transform active:scale-[0.98] transition-all">
         <i class="fa-solid fa-address-card text-xl text-slate-900"></i>
         <div class="text-right leading-tight">
-          <div class="text-xs uppercase tracking-wider text-slate-900/80 font-bold">حفظ جهة الاتصال بضغطة واحدة</div>
-          <div class="text-sm font-extrabold text-slate-950">Save Contact to Phone</div>
+          <div class="text-xs uppercase tracking-wider text-slate-900/80 font-bold">حفظ جهة الاتصال بالصورة بضغطة واحدة</div>
+          <div class="text-sm font-extrabold text-slate-950">Save Contact with Photo</div>
         </div>
         <i class="fa-solid fa-arrow-down-long mr-auto text-slate-950/70"></i>
       </button>
@@ -542,7 +542,73 @@
     });
 
     // Smart vCard (.vcf) Generator for iOS & Android
-    function downloadVCard() {
+    // Helper to convert the currently rendered profile logo into a clean, optimized Base64 JPEG
+    function getProfileImageBase64() {
+      return new Promise((resolve) => {
+        const img = document.getElementById('doctorLogoImg');
+        const fallbackSvg = document.getElementById('vectorFallbackLogo');
+
+        // If the main image is visible and loaded
+        if (img && img.style.display !== 'none' && img.naturalWidth > 0) {
+          try {
+            const canvas = document.createElement('canvas');
+            const size = 320; // optimal size for mobile address books
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Draw a white circular/square background
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, size, size);
+            ctx.drawImage(img, 0, 0, size, size);
+
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+            const base64 = dataUrl.split(',')[1];
+            resolve(base64);
+            return;
+          } catch (e) {
+            console.warn('Canvas export tainted or failed, falling back to SVG rasterization', e);
+          }
+        }
+
+        // Fallback: rasterize the inline SVG logo to canvas
+        try {
+          const svgData = new XMLSerializer().serializeToString(fallbackSvg || document.querySelector('svg'));
+          const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+          const URLObj = window.URL || window.webkitURL || window;
+          const blobURL = URLObj.createObjectURL(svgBlob);
+          const tempImg = new Image();
+          
+          tempImg.onload = function() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 300;
+            canvas.height = 300;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, 300, 300);
+            ctx.drawImage(tempImg, 0, 0, 300, 300);
+            URLObj.revokeObjectURL(blobURL);
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+            resolve(dataUrl.split(',')[1]);
+          };
+
+          tempImg.onerror = function() {
+            resolve(null);
+          };
+
+          tempImg.src = blobURL;
+        } catch (err) {
+          resolve(null);
+        }
+      });
+    }
+
+    async function downloadVCard() {
+      showToast("جاري تجهيز كارت الاتصال بالصورة...");
+
+      // Fetch the Base64 image
+      let photoBase64 = await getProfileImageBase64();
+
       // Clean notes with formatted direct links so mobile contacts can easily click both branch locations
       const noteContent = [
         "عيادة د. راما سفقلو للتغذية العلاجية ونحت وتنسيق القوام (Cairo University)",
@@ -558,7 +624,8 @@
         "📸 إنستغرام: @dr_rama_safklo"
       ].join("\\n");
 
-      const vCardContent = [
+      // Build vCard 3.0 lines
+      const vCardLines = [
         "BEGIN:VCARD",
         "VERSION:3.0",
         `FN;CHARSET=UTF-8:${doctorData.nameAr} (${doctorData.name})`,
@@ -572,9 +639,18 @@
         `URL;TYPE=Rehab Branch:${doctorData.mapRehab}`,
         `ADR;TYPE=WORK;CHARSET=UTF-8:;;${doctorData.address1};مدينة نصر;القاهرة;;مصر`,
         `ADR;TYPE=HOME;CHARSET=UTF-8:;;${doctorData.address2};الرحاب;القاهرة;;مصر`,
-        `NOTE;CHARSET=UTF-8:${noteContent}`,
-        "END:VCARD"
-      ].join("\r\n");
+        `NOTE;CHARSET=UTF-8:${noteContent}`
+      ];
+
+      // Add Base64 Embedded Photo if available
+      if (photoBase64) {
+        // vCard 3.0 photo specification with inline base64
+        vCardLines.push(`PHOTO;ENCODING=b;TYPE=JPEG:${photoBase64}`);
+      }
+
+      vCardLines.push("END:VCARD");
+
+      const vCardContent = vCardLines.join("\r\n");
 
       // Blob generation for native device contact integration
       const blob = new Blob([vCardContent], { type: "text/vcard;charset=utf-8;" });
@@ -588,7 +664,7 @@
       document.body.removeChild(downloadLink);
       URL.revokeObjectURL(url);
 
-      showToast("تم تحميل كارت الاتصال، يمكنك حفظه الآن في هاتفك!");
+      showToast("تم تحميل كارت الاتصال مع الصورة بنجاح!");
     }
 
     // Copy Current Card URL to Clipboard
