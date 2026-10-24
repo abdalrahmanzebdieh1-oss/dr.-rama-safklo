@@ -471,7 +471,7 @@
       phone: "+201150830398",
       email: "dr.rama.safklo@gmail.com",
       instagram: "https://www.instagram.com/dr_rama_safklo/",
-      website: window.location.href || "https://www.instagram.com/dr_rama_safklo/",
+      website: "https://abdalrahmanzebdieh1-oss.github.io/dr-rama-safklo/",
       address1: "3 شارع أحمد الصيفي متفرع من مصطفى النحاس، مدينة نصر، القاهرة",
       mapNasrCity: "https://maps.google.com/?q=30.053493,31.342398",
       address2: "عيادة 108 الدور الأول، مول ميديكال بارك إيليت (بين بوابة 5 و6)، مدينة الرحاب، القاهرة",
@@ -647,6 +647,9 @@
       const noteContent = [
         "عيادة د. راما سفقلو للتغذية العلاجية ونحت وتنسيق القوام (Cairo University)",
         "",
+        "🌐 رابط البطاقة والعيادة الرسمي:",
+        doctorData.website,
+        "",
         "📍 موقع فرع مدينة نصر (Life Style):",
         "3 شارع أحمد الصيفي متفرع من مصطفى النحاس - أعلى مطعم العودة",
         doctorData.mapNasrCity,
@@ -668,7 +671,8 @@
         `TITLE;CHARSET=UTF-8:${doctorData.title}`,
         `TEL;TYPE=CELL,VOICE,PREF:${doctorData.phone}`,
         `EMAIL;TYPE=WORK,INTERNET:${doctorData.email}`,
-        `URL;TYPE=WORK;CHARSET=UTF-8:${doctorData.instagram}`,
+        `URL;TYPE=WORK;CHARSET=UTF-8:${doctorData.website}`,
+        `URL;TYPE=Instagram:${doctorData.instagram}`,
         `URL;TYPE=Nasr City Branch:${doctorData.mapNasrCity}`,
         `URL;TYPE=Rehab Branch:${doctorData.mapRehab}`,
         `ADR;TYPE=WORK;CHARSET=UTF-8:;;${doctorData.address1};مدينة نصر;القاهرة;;مصر`,
@@ -702,7 +706,7 @@
 
     // Copy Current Card URL to Clipboard
     function copyCardUrl() {
-      const currentUrl = window.location.href;
+      const currentUrl = doctorData.website;
       
       // Fallback copy execCommand for iframe compatibility
       const tempInput = document.createElement("input");
