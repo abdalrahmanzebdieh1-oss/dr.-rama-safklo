@@ -26,14 +26,16 @@
         extend: {
           colors: {
             brand: {
-              magenta: '#B8285C',
-              rose: '#D63384',
-              softPink: '#FCE7F3',
-              velvet: '#120710',
-              plumDeep: '#1A0B17',
-              goldLight: '#F3DB9A',
-              gold: '#D4AF37',
-              goldDark: '#A88020'
+              dustyRose: '#E3ABAF',
+              softBlush: '#F6D7DB',
+              warmRoseGold: '#E39E8B',
+              roseDeep: '#A3485E',
+              roseMuted: '#C2707E',
+              velvet: '#160910',
+              plumDeep: '#200D18',
+              goldLight: '#FBE8DC',
+              gold: '#E39E8B',
+              goldDark: '#9C5846'
             }
           },
           fontFamily: {
@@ -49,8 +51,9 @@
   <style>
     /* Custom Luxury Styling & Animations */
     :root {
-      --gold-gradient: linear-gradient(135deg, #F9E7B9 0%, #D4AF37 50%, #996515 100%);
-      --rose-gradient: linear-gradient(135deg, #FF6EA7 0%, #B8285C 50%, #680E31 100%);
+      --rose-palette-gradient: linear-gradient(135deg, #F6D7DB 0%, #E3ABAF 50%, #E39E8B 100%);
+      --gold-gradient: linear-gradient(135deg, #F6D7DB 0%, #E39E8B 50%, #C06852 100%);
+      --rose-gradient: linear-gradient(135deg, #F6D7DB 0%, #E3ABAF 50%, #A3485E 100%);
     }
 
     body {
@@ -59,15 +62,15 @@
       user-select: none;
     }
 
-    /* Metallic Text Gradients */
+    /* Metallic Text Gradients with New Color Codes */
     .text-gradient-gold {
-      background: linear-gradient(120deg, #FDE68A 0%, #D4AF37 40%, #F59E0B 70%, #FEF3C7 100%);
+      background: linear-gradient(120deg, #F6D7DB 0%, #E39E8B 45%, #E3ABAF 75%, #FFFFFF 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .text-gradient-rose {
-      background: linear-gradient(135deg, #F472B6 0%, #DB2777 50%, #BE185D 100%);
+      background: linear-gradient(135deg, #F6D7DB 0%, #E3ABAF 50%, #E39E8B 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -76,16 +79,16 @@
     .glass-card {
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      background: rgba(26, 11, 23, 0.72);
-      border: 1px solid rgba(212, 175, 55, 0.22);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(184, 40, 92, 0.15);
+      background: rgba(28, 12, 21, 0.78);
+      border: 1px solid rgba(227, 171, 175, 0.28);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(227, 158, 139, 0.18);
     }
 
     /* Light Theme Glass Override */
     .pearl-theme .glass-card {
-      background: rgba(255, 255, 255, 0.85);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      box-shadow: 0 20px 40px rgba(184, 40, 92, 0.08), 0 0 25px rgba(212, 175, 55, 0.15);
+      background: rgba(255, 255, 255, 0.90);
+      border: 1px solid rgba(227, 171, 175, 0.45);
+      box-shadow: 0 20px 40px rgba(227, 171, 175, 0.18), 0 0 25px rgba(227, 158, 139, 0.22);
     }
 
     /* Avatar Rotating Ambient Border */
@@ -99,7 +102,7 @@
       position: absolute;
       inset: -4px;
       border-radius: 9999px;
-      background: conic-gradient(from 0deg, #D4AF37, #B8285C, #F3DB9A, #DB2777, #D4AF37);
+      background: conic-gradient(from 0deg, #E39E8B, #E3ABAF, #F6D7DB, #A3485E, #E39E8B);
       animation: spinGlow 9s linear infinite;
       z-index: 0;
     }
@@ -119,7 +122,7 @@
       background: linear-gradient(
         60deg,
         rgba(255, 255, 255, 0) 20%,
-        rgba(255, 255, 255, 0.35) 50%,
+        rgba(255, 255, 255, 0.45) 50%,
         rgba(255, 255, 255, 0) 80%
       );
       transform: rotate(25deg);
@@ -141,13 +144,13 @@
     }
   </style>
 </head>
-<body id="appBody" class="bg-[#0C040B] text-slate-100 min-h-screen flex items-center justify-center p-0 sm:p-4 selection:bg-pink-600 selection:text-white transition-colors duration-500">
+<body id="appBody" class="bg-[#0E050A] text-slate-100 min-h-screen flex items-center justify-center p-0 sm:p-4 selection:bg-[#E3ABAF] selection:text-[#160910] transition-colors duration-500">
 
   <!-- Floating Ambient Blur Spheres -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-    <div class="absolute -top-32 -left-32 w-96 h-96 bg-brand-magenta/25 rounded-full blur-[110px]"></div>
-    <div class="absolute top-1/2 -right-36 w-96 h-96 bg-brand-gold/15 rounded-full blur-[120px]"></div>
-    <div class="absolute -bottom-24 left-1/3 w-80 h-80 bg-brand-rose/20 rounded-full blur-[100px]"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-[#E3ABAF]/20 rounded-full blur-[110px]"></div>
+    <div class="absolute top-1/2 -right-36 w-96 h-96 bg-[#E39E8B]/18 rounded-full blur-[120px]"></div>
+    <div class="absolute -bottom-24 left-1/3 w-80 h-80 bg-[#F6D7DB]/15 rounded-full blur-[100px]"></div>
   </div>
 
   <!-- Mobile Card Wrapper -->
@@ -156,7 +159,7 @@
     <!-- Top Action Bar (Theme Switch & Share QR) -->
     <header class="flex items-center justify-between px-6 pt-6 pb-2 z-20">
       <div class="flex items-center gap-2">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-magenta/15 border border-brand-rose/30 text-xs font-semibold text-pink-300">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E3ABAF]/15 border border-[#E3ABAF]/40 text-xs font-semibold text-[#F6D7DB]">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           متاح للاستشارة الآن
         </span>
@@ -164,12 +167,12 @@
 
       <div class="flex items-center gap-2">
         <!-- Switch Color Theme Button -->
-        <button id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle Theme" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-amber-300 hover:scale-105 active:scale-95 transition-all shadow-md">
+        <button id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle Theme" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#F6D7DB] hover:scale-105 active:scale-95 transition-all shadow-md">
           <i class="fa-solid fa-moon text-sm" id="themeIcon"></i>
         </button>
 
         <!-- Open QR Code Modal Button -->
-        <button onclick="openQrModal()" aria-label="Show QR Code" class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-magenta to-brand-gold/80 text-white flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-md">
+        <button onclick="openQrModal()" aria-label="Show QR Code" class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#E3ABAF] to-[#E39E8B] text-[#160910] font-bold flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-md">
           <i class="fa-solid fa-qrcode text-base"></i>
         </button>
       </div>
@@ -179,7 +182,7 @@
     <section class="flex flex-col items-center px-6 pt-4 pb-2 text-center relative z-10">
       <!-- Avatar with Dynamic Glowing Gradient Halo -->
       <div class="relative w-36 h-36 mb-4 flex items-center justify-center pulsing-border">
-        <div class="relative z-10 w-[136px] h-[136px] rounded-full overflow-hidden bg-white p-1 border-2 border-[#E5C378]/80 shadow-2xl flex items-center justify-center group cursor-pointer" onclick="document.getElementById('logoFileInput').click()" title="انقر لتغيير الصورة إن أردت">
+        <div class="relative z-10 w-[136px] h-[136px] rounded-full overflow-hidden bg-white p-1 border-2 border-[#E3ABAF] shadow-2xl flex items-center justify-center group cursor-pointer" onclick="document.getElementById('logoFileInput').click()" title="انقر لتغيير الصورة إن أردت">
           
           <!-- Clinic Official Logo Image: Named logo.jpg for easy GitHub deployment -->
           <img id="doctorLogoImg" 
@@ -192,33 +195,32 @@
           <!-- High-End Detailed Vector Replica Fallback if local image not found -->
           <svg id="vectorFallbackLogo" style="display: none;" viewBox="0 0 200 200" class="w-full h-full p-1 drop-shadow-md" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="roseGoldGrad" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#FCE7F3"/>
-                <stop offset="35%" stop-color="#DB2777"/>
-                <stop offset="70%" stop-color="#B8285C"/>
-                <stop offset="100%" stop-color="#9D174D"/>
+              <linearGradient id="paletteGrad1" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#F6D7DB"/>
+                <stop offset="50%" stop-color="#E3ABAF"/>
+                <stop offset="100%" stop-color="#E39E8B"/>
               </linearGradient>
-              <linearGradient id="champagneGrad" x1="0" y1="100" x2="200" y2="100" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#FDE68A"/>
-                <stop offset="50%" stop-color="#D4AF37"/>
-                <stop offset="100%" stop-color="#B45309"/>
+              <linearGradient id="paletteGrad2" x1="0" y1="100" x2="200" y2="100" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#F6D7DB"/>
+                <stop offset="50%" stop-color="#E39E8B"/>
+                <stop offset="100%" stop-color="#9C5846"/>
               </linearGradient>
             </defs>
             <!-- Outer Circular Flow Accent -->
-            <circle cx="100" cy="100" r="86" stroke="url(#champagneGrad)" stroke-width="1.8" stroke-dasharray="140 12" opacity="0.6"/>
+            <circle cx="100" cy="100" r="86" stroke="url(#paletteGrad2)" stroke-width="1.8" stroke-dasharray="140 12" opacity="0.7"/>
             <!-- Stylized Woman Hair Updo & Profile -->
-            <path d="M120 28 C112 28 106 35 106 43 C106 50 112 56 122 55 C124 46 129 38 120 28 Z" fill="url(#roseGoldGrad)"/>
-            <path d="M124 38 C132 38 138 45 137 53 C132 52 127 46 124 38 Z" fill="url(#roseGoldGrad)"/>
-            <path d="M124 54 C128 58 132 60 134 66 C131 68 126 68 124 72 C125 76 129 80 126 84 C120 90 124 98 128 105" stroke="url(#roseGoldGrad)" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M120 28 C112 28 106 35 106 43 C106 50 112 56 122 55 C124 46 129 38 120 28 Z" fill="url(#paletteGrad1)"/>
+            <path d="M124 38 C132 38 138 45 137 53 C132 52 127 46 124 38 Z" fill="url(#paletteGrad1)"/>
+            <path d="M124 54 C128 58 132 60 134 66 C131 68 126 68 124 72 C125 76 129 80 126 84 C120 90 124 98 128 105" stroke="url(#paletteGrad1)" stroke-width="2.2" stroke-linecap="round"/>
             <!-- Stylized Luxury Letter 'R' Contour -->
-            <path d="M68 46 C68 46 112 40 120 72 C128 100 98 110 82 110 L68 110 L68 155" stroke="url(#roseGoldGrad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M94 106 C105 125 120 148 144 156" stroke="url(#roseGoldGrad)" stroke-width="11" stroke-linecap="round"/>
-            <!-- Feminine Body Silhouette Ribbon in Champagne Gold -->
-            <path d="M118 64 C134 80 145 102 135 126 C128 144 116 150 110 156" stroke="url(#champagneGrad)" stroke-width="4.5" stroke-linecap="round"/>
-            <!-- Wellness Apple Contour Accent with Golden & Rose Leaves -->
-            <path d="M52 134 C44 146 58 162 74 157 C82 149 77 136 64 135 C58 134 54 132 52 134 Z" stroke="url(#roseGoldGrad)" stroke-width="3" fill="none"/>
-            <path d="M50 130 C40 125 44 115 54 120 C54 126 52 129 50 130 Z" fill="url(#champagneGrad)"/>
-            <path d="M64 128 C64 118 72 116 75 124 C71 129 67 129 64 128 Z" fill="url(#roseGoldGrad)"/>
+            <path d="M68 46 C68 46 112 40 120 72 C128 100 98 110 82 110 L68 110 L68 155" stroke="url(#paletteGrad1)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M94 106 C105 125 120 148 144 156" stroke="url(#paletteGrad1)" stroke-width="11" stroke-linecap="round"/>
+            <!-- Feminine Body Silhouette Ribbon -->
+            <path d="M118 64 C134 80 145 102 135 126 C128 144 116 150 110 156" stroke="url(#paletteGrad2)" stroke-width="4.5" stroke-linecap="round"/>
+            <!-- Wellness Apple Contour Accent with Rose Leaves -->
+            <path d="M52 134 C44 146 58 162 74 157 C82 149 77 136 64 135 C58 134 54 132 52 134 Z" stroke="url(#paletteGrad1)" stroke-width="3" fill="none"/>
+            <path d="M50 130 C40 125 44 115 54 120 C54 126 52 129 50 130 Z" fill="url(#paletteGrad2)"/>
+            <path d="M64 128 C64 118 72 116 75 124 C71 129 67 129 64 128 Z" fill="url(#paletteGrad1)"/>
           </svg>
 
           <!-- Hidden File Input for Easy Direct Image Upload/Replace -->
@@ -233,65 +235,65 @@
       <h2 class="text-lg font-bold text-gradient-rose tracking-wide font-arabic">
         د. راما سفقلو
       </h2>
-      <p class="text-xs uppercase tracking-wider text-amber-200/90 font-medium mt-1 font-arabic">
+      <p class="text-xs uppercase tracking-wider text-[#F6D7DB]/90 font-medium mt-1 font-arabic">
         أخصائية السمنة والنحافة وتنسيق القوام
       </p>
       
       <!-- Bio Badge -->
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-brand-gold/30 mt-2">
-        <i class="fa-solid fa-graduation-cap text-brand-gold text-xs"></i>
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-[#E3ABAF]/40 mt-2">
+        <i class="fa-solid fa-graduation-cap text-[#E39E8B] text-xs"></i>
         <span class="text-xs text-slate-200 font-sans font-semibold tracking-wide">Cairo University 🏨</span>
       </div>
 
-      <!-- 4 Core Pillars / Services Ribbon (Direct from brand logo) -->
-      <div class="w-full grid grid-cols-4 gap-2 my-5 pt-3 border-t border-b border-brand-gold/20">
+      <!-- 4 Core Pillars / Services Ribbon (Styled with new Palette) -->
+      <div class="w-full grid grid-cols-4 gap-2 my-5 pt-3 border-t border-b border-[#E3ABAF]/25">
         <!-- 1. Nutrition Plan -->
-        <div class="flex flex-col items-center p-2 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-brand-gold/40 transition-all">
-          <div class="w-9 h-9 rounded-full bg-pink-500/10 text-pink-400 flex items-center justify-center text-sm mb-1.5 shadow-sm">
+        <div class="flex flex-col items-center p-2 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#E3ABAF]/50 transition-all">
+          <div class="w-9 h-9 rounded-full bg-[#E3ABAF]/15 text-[#F6D7DB] flex items-center justify-center text-sm mb-1.5 shadow-sm">
             <i class="fa-solid fa-apple-whole"></i>
           </div>
           <span class="text-[10px] font-bold text-slate-200">Nutrition</span>
-          <span class="text-[9px] text-pink-300 font-arabic">تغذية علاجية</span>
+          <span class="text-[9px] text-[#F6D7DB] font-arabic">تغذية علاجية</span>
         </div>
 
         <!-- 2. Body Contouring -->
-        <div class="flex flex-col items-center p-2 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-brand-gold/40 transition-all">
-          <div class="w-9 h-9 rounded-full bg-amber-500/10 text-amber-300 flex items-center justify-center text-sm mb-1.5 shadow-sm">
+        <div class="flex flex-col items-center p-2 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#E39E8B]/50 transition-all">
+          <div class="w-9 h-9 rounded-full bg-[#E39E8B]/15 text-[#E39E8B] flex items-center justify-center text-sm mb-1.5 shadow-sm">
             <i class="fa-solid fa-wand-magic-sparkles"></i>
           </div>
           <span class="text-[10px] font-bold text-slate-200">Contour</span>
-          <span class="text-[9px] text-amber-200 font-arabic">نحت وتنسيق</span>
+          <span class="text-[9px] text-[#E39E8B] font-arabic">نحت وتنسيق</span>
         </div>
 
         <!-- 3. Healthy Lifestyle -->
-        <div class="flex flex-col items-center p-2 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-brand-gold/40 transition-all">
-          <div class="w-9 h-9 rounded-full bg-pink-500/10 text-pink-400 flex items-center justify-center text-sm mb-1.5 shadow-sm">
+        <div class="flex flex-col items-center p-2 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#E3ABAF]/50 transition-all">
+          <div class="w-9 h-9 rounded-full bg-[#E3ABAF]/15 text-[#F6D7DB] flex items-center justify-center text-sm mb-1.5 shadow-sm">
             <i class="fa-solid fa-spa"></i>
           </div>
           <span class="text-[10px] font-bold text-slate-200">Lifestyle</span>
-          <span class="text-[9px] text-pink-300 font-arabic">نمط صحي</span>
+          <span class="text-[9px] text-[#F6D7DB] font-arabic">نمط صحي</span>
         </div>
 
         <!-- 4. Better You -->
-        <div class="flex flex-col items-center p-2 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-brand-gold/40 transition-all">
-          <div class="w-9 h-9 rounded-full bg-rose-500/10 text-rose-300 flex items-center justify-center text-sm mb-1.5 shadow-sm">
+        <div class="flex flex-col items-center p-2 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#E39E8B]/50 transition-all">
+          <div class="w-9 h-9 rounded-full bg-[#E39E8B]/15 text-[#E3ABAF] flex items-center justify-center text-sm mb-1.5 shadow-sm">
             <i class="fa-solid fa-heart-pulse"></i>
           </div>
           <span class="text-[10px] font-bold text-slate-200">Better You</span>
-          <span class="text-[9px] text-rose-200 font-arabic">رشاقة دائمة</span>
+          <span class="text-[9px] text-[#F6D7DB] font-arabic">رشاقة دائمة</span>
         </div>
       </div>
     </section>
 
-    <!-- Main Master Action: Smart vCard Download Button -->
+    <!-- Main Master Action: Smart vCard Download Button (Palette Gradient) -->
     <div class="px-6 pb-4">
-      <button onclick="downloadVCard()" class="shimmer-btn w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#B8285C] via-[#D4AF37] to-[#B8285C] text-slate-950 font-bold text-sm tracking-wide shadow-xl shadow-brand-magenta/30 border border-amber-200/50 flex items-center justify-center gap-3 transform active:scale-[0.98] transition-all">
-        <i class="fa-solid fa-address-card text-xl text-slate-900"></i>
+      <button onclick="downloadVCard()" class="shimmer-btn w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#E3ABAF] via-[#F6D7DB] to-[#E39E8B] text-[#160910] font-bold text-sm tracking-wide shadow-xl shadow-[#E3ABAF]/25 border border-white/40 flex items-center justify-center gap-3 transform active:scale-[0.98] transition-all">
+        <i class="fa-solid fa-address-card text-xl text-[#160910]"></i>
         <div class="text-right leading-tight">
-          <div class="text-xs uppercase tracking-wider text-slate-900/80 font-bold">حفظ جهة الاتصال بالصورة بضغطة واحدة</div>
-          <div class="text-sm font-extrabold text-slate-950">Save Contact with Photo</div>
+          <div class="text-xs uppercase tracking-wider text-[#160910]/80 font-bold">حفظ جهة الاتصال بالصورة بضغطة واحدة</div>
+          <div class="text-sm font-extrabold text-[#160910]">Save Contact with Photo</div>
         </div>
-        <i class="fa-solid fa-arrow-down-long mr-auto text-slate-950/70"></i>
+        <i class="fa-solid fa-arrow-down-long mr-auto text-[#160910]/75"></i>
       </button>
     </div>
 
@@ -321,8 +323,8 @@
         </a>
 
         <!-- Clinic Locations (Opens Branches Modal) -->
-        <button onclick="openBranchesModal()" class="flex items-center gap-3 p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-amber-400/50 hover:bg-amber-500/10 transition-all active:scale-95 group text-right w-full">
-          <div class="w-11 h-11 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-lg group-hover:scale-110 transition-transform shrink-0">
+        <button onclick="openBranchesModal()" class="flex items-center gap-3 p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-[#E39E8B]/50 hover:bg-[#E39E8B]/10 transition-all active:scale-95 group text-right w-full">
+          <div class="w-11 h-11 rounded-xl bg-[#E39E8B]/20 text-[#F6D7DB] flex items-center justify-center text-lg group-hover:scale-110 transition-transform shrink-0">
             <i class="fa-solid fa-location-dot"></i>
           </div>
           <div class="text-right overflow-hidden">
@@ -332,8 +334,8 @@
         </button>
 
         <!-- Clinic Instagram Link -->
-        <a href="https://www.instagram.com/dr_rama_safklo/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-brand-magenta/50 hover:bg-brand-magenta/10 transition-all active:scale-95 group">
-          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+        <a href="https://www.instagram.com/dr_rama_safklo/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-[#E3ABAF]/50 hover:bg-[#E3ABAF]/10 transition-all active:scale-95 group">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#E39E8B] via-[#E3ABAF] to-[#A3485E] text-white flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
             <i class="fa-brands fa-instagram"></i>
           </div>
           <div class="text-right">
@@ -348,7 +350,7 @@
     <section class="px-6 py-4">
       <div class="p-3.5 rounded-2xl bg-gradient-to-r from-white/[0.03] via-white/[0.07] to-white/[0.03] border border-white/10 flex items-center justify-around">
         <!-- Instagram Primary -->
-        <a href="https://www.instagram.com/dr_rama_safklo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center text-lg hover:scale-110 active:scale-95 transition-all shadow-md">
+        <a href="https://www.instagram.com/dr_rama_safklo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#E39E8B] via-[#E3ABAF] to-[#A3485E] text-white flex items-center justify-center text-lg hover:scale-110 active:scale-95 transition-all shadow-md">
           <i class="fa-brands fa-instagram"></i>
         </a>
         <!-- WhatsApp Direct -->
@@ -360,7 +362,7 @@
           <i class="fa-solid fa-phone"></i>
         </a>
         <!-- Branches Quick View -->
-        <button onclick="openBranchesModal()" aria-label="Branches" class="w-10 h-10 rounded-xl bg-brand-magenta text-white flex items-center justify-center text-base hover:scale-110 active:scale-95 transition-all shadow-md">
+        <button onclick="openBranchesModal()" aria-label="Branches" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#E3ABAF] to-[#E39E8B] text-[#160910] flex items-center justify-center text-base hover:scale-110 active:scale-95 transition-all shadow-md">
           <i class="fa-solid fa-map-location-dot"></i>
         </button>
       </div>
@@ -369,7 +371,7 @@
     <!-- Working Hours & Footer Badge -->
     <footer class="px-6 pb-6 pt-2 text-center border-t border-white/5 relative z-10">
       <div class="flex items-center justify-center gap-2 text-[11px] text-slate-300">
-        <i class="fa-regular fa-clock text-amber-400"></i>
+        <i class="fa-regular fa-clock text-[#E39E8B]"></i>
         <span>الحجز والاستفسار مسبقاً عبر الواتساب أو الهاتف</span>
       </div>
       <p class="text-[10px] text-slate-400 mt-2 font-light">
@@ -380,11 +382,11 @@
 
   <!-- Interactive Branches Modal (New Feature for Nasr City & Rehab Branches) -->
   <div id="branchesModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
-    <div class="w-full max-w-sm bg-[#1A0B17] border border-amber-300/30 rounded-3xl p-5 text-right shadow-2xl transform scale-90 transition-transform duration-300" id="branchesModalCard">
+    <div class="w-full max-w-sm bg-[#1D0C18] border border-[#E3ABAF]/40 rounded-3xl p-5 text-right shadow-2xl transform scale-90 transition-transform duration-300" id="branchesModalCard">
       <div class="flex justify-between items-center mb-4 pb-2 border-b border-white/10">
         <div class="flex items-center gap-2">
-          <i class="fa-solid fa-location-dot text-amber-400"></i>
-          <h3 class="text-sm font-bold text-amber-200">فروع عيادات د. راما سفقلو</h3>
+          <i class="fa-solid fa-location-dot text-[#E39E8B]"></i>
+          <h3 class="text-sm font-bold text-[#F6D7DB]">فروع عيادات د. راما سفقلو</h3>
         </div>
         <button onclick="closeBranchesModal()" class="w-8 h-8 rounded-full bg-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
           <i class="fa-solid fa-xmark"></i>
@@ -392,30 +394,30 @@
       </div>
 
       <!-- Branch 1: Nasr City -->
-      <div class="mb-3 p-3.5 rounded-2xl bg-white/[0.04] border border-brand-gold/30 hover:border-brand-gold transition-all">
+      <div class="mb-3 p-3.5 rounded-2xl bg-white/[0.04] border border-[#E3ABAF]/30 hover:border-[#E3ABAF] transition-all">
         <div class="flex items-center justify-between mb-1.5">
           <span class="text-xs font-bold text-gradient-gold">فرع مدينة نصر (Life Style)</span>
-          <span class="text-[10px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300 font-semibold">عيادة 1</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#E3ABAF]/20 text-[#F6D7DB] font-semibold">عيادة 1</span>
         </div>
         <p class="text-xs text-slate-300 leading-relaxed mb-2">
           3 شارع أحمد الصيفي متفرع من مصطفى النحاس - أعلى مطعم العودة - الدور الأول (الشارع المقابل لكنتاكي وتكا).
         </p>
-        <a href="https://maps.google.com/?q=30.053493,31.342398" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-amber-300 bg-amber-500/20 hover:bg-amber-500/30 px-3 py-1.5 rounded-xl border border-amber-500/40 transition-colors w-full justify-center">
+        <a href="https://maps.google.com/?q=30.053493,31.342398" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-[#160910] bg-gradient-to-r from-[#F6D7DB] to-[#E3ABAF] px-3 py-1.5 rounded-xl transition-all w-full justify-center shadow-md">
           <i class="fa-solid fa-map-location-dot"></i>
           <span>فتح الموقع على خرائط Google Maps</span>
         </a>
       </div>
 
       <!-- Branch 2: Rehab City -->
-      <div class="p-3.5 rounded-2xl bg-white/[0.04] border border-brand-gold/30 hover:border-brand-gold transition-all">
+      <div class="p-3.5 rounded-2xl bg-white/[0.04] border border-[#E3ABAF]/30 hover:border-[#E3ABAF] transition-all">
         <div class="flex items-center justify-between mb-1.5">
           <span class="text-xs font-bold text-gradient-gold">فرع الرحاب (Medical Park Elite)</span>
-          <span class="text-[10px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-300 font-semibold">عيادة 2</span>
+          <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#E3ABAF]/20 text-[#F6D7DB] font-semibold">عيادة 2</span>
         </div>
         <p class="text-xs text-slate-300 leading-relaxed mb-2">
           عيادة 108 الدور الأول - مول ميديكال بارك إيليت الرحاب (ما بين بوابة 5 وبوابة 6).
         </p>
-        <a href="https://maps.google.com/?cid=10765199959451154721&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-amber-300 bg-amber-500/20 hover:bg-amber-500/30 px-3 py-1.5 rounded-xl border border-amber-500/40 transition-colors w-full justify-center">
+        <a href="https://maps.google.com/?cid=10765199959451154721&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-[#160910] bg-gradient-to-r from-[#F6D7DB] to-[#E3ABAF] px-3 py-1.5 rounded-xl transition-all w-full justify-center shadow-md">
           <i class="fa-solid fa-map-location-dot"></i>
           <span>فتح موقع مول Elite على خرائط Google Maps</span>
         </a>
@@ -425,9 +427,9 @@
 
   <!-- Dynamic QR Code & Share Modal -->
   <div id="qrModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
-    <div class="w-full max-w-xs bg-[#190C17] border border-amber-300/30 rounded-3xl p-6 text-center shadow-2xl transform scale-90 transition-transform duration-300" id="qrModalCard">
+    <div class="w-full max-w-xs bg-[#1D0C18] border border-[#E3ABAF]/40 rounded-3xl p-6 text-center shadow-2xl transform scale-90 transition-transform duration-300" id="qrModalCard">
       <div class="flex justify-between items-center mb-4">
-        <h3 class="text-sm font-bold text-amber-200">مسح ومشاركة الكارت | QR</h3>
+        <h3 class="text-sm font-bold text-[#F6D7DB]">مسح ومشاركة الكارت | QR</h3>
         <button onclick="closeQrModal()" class="w-8 h-8 rounded-full bg-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
           <i class="fa-solid fa-xmark"></i>
         </button>
@@ -441,7 +443,7 @@
       </p>
 
       <!-- Copy Card Link Button -->
-      <button onclick="copyCardUrl()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-brand-magenta to-brand-gold text-slate-950 font-bold text-xs flex items-center justify-center gap-2 hover:opacity-95 active:scale-95 transition-all shadow-md">
+      <button onclick="copyCardUrl()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#E3ABAF] to-[#E39E8B] text-[#160910] font-bold text-xs flex items-center justify-center gap-2 hover:opacity-95 active:scale-95 transition-all shadow-md">
         <i class="fa-regular fa-copy"></i>
         <span>نسخ رابط البطاقة (Copy Link)</span>
       </button>
@@ -450,7 +452,7 @@
 
   <!-- Elegant Toast Notification Box -->
   <div id="toastBox" class="fixed bottom-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none px-4">
-    <div class="bg-gradient-to-r from-brand-plumDeep to-brand-velvet border border-brand-gold/60 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3">
+    <div class="bg-gradient-to-r from-[#200D18] to-[#160910] border border-[#E3ABAF]/60 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3">
       <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs">
         <i class="fa-solid fa-check"></i>
       </div>
@@ -486,7 +488,7 @@
           text: doctorData.website,
           width: 170,
           height: 170,
-          colorDark: "#1A0B17",
+          colorDark: "#200D18",
           colorLight: "#FFFFFF",
           correctLevel: QRCode.CorrectLevel.H
         });
@@ -676,7 +678,6 @@
 
       // Add Base64 Embedded Photo if available
       if (photoBase64) {
-        // vCard 3.0 photo specification with inline base64
         vCardLines.push(`PHOTO;ENCODING=b;TYPE=JPEG:${photoBase64}`);
       }
 
@@ -744,18 +745,18 @@
 
       if (isPearlTheme) {
         body.classList.add('pearl-theme');
-        body.classList.remove('bg-[#0C040B]', 'text-slate-100');
-        body.classList.add('bg-[#FBF8F5]', 'text-slate-800');
-        icon.classList.remove('fa-moon', 'text-amber-300');
-        icon.classList.add('fa-sun', 'text-amber-500');
-        showToast("تم تفعيل مظهر اللؤلؤ الفاخر (Pearl Ivory)");
+        body.classList.remove('bg-[#0E050A]', 'text-slate-100');
+        body.classList.add('bg-[#FAF3F4]', 'text-slate-800');
+        icon.classList.remove('fa-moon', 'text-[#F6D7DB]');
+        icon.classList.add('fa-sun', 'text-[#E39E8B]');
+        showToast("تم تفعيل مظهر اللؤلؤ الباستيل (Soft Pearl)");
       } else {
         body.classList.remove('pearl-theme');
-        body.classList.remove('bg-[#FBF8F5]', 'text-slate-800');
-        body.classList.add('bg-[#0C040B]', 'text-slate-100');
-        icon.classList.remove('fa-sun', 'text-amber-500');
-        icon.classList.add('fa-moon', 'text-amber-300');
-        showToast("تم تفعيل المظهر المخملي الملكي (Velvet Plum)");
+        body.classList.remove('bg-[#FAF3F4]', 'text-slate-800');
+        body.classList.add('bg-[#0E050A]', 'text-slate-100');
+        icon.classList.remove('fa-sun', 'text-[#E39E8B]');
+        icon.classList.add('fa-moon', 'text-[#F6D7DB]');
+        showToast("تم تفعيل المظهر المخملي الراقي (Velvet Dusty Rose)");
       }
     }
 
